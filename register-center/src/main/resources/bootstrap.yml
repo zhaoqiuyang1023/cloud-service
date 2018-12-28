@@ -6,18 +6,19 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://local.register.com:${server.port}/eureka/
-    register-with-eureka: true
-    fetch-registry: false
-    registry-fetch-interval-seconds: 5
+      defaultZone: http://local.register.com:${server.port}/eureka/  #指定服务注册中心地址，类型为 HashMap，并设置有一组默认值，默认的Key为 defaultZone；默认的Value为 http://localhost:8761/eureka ，如果服务注册中心为高可用集群时，多个注册中心地址以逗号分隔。如果服务注册中心加入了安全验证，这里配置的地址格式为： http://<username>:<password>@localhost:8761/eureka 其中 <username> 为安全校验的用户名；<password> 为该用户的密码
+
+    register-with-eureka: true  #启动服务注册
+    fetch-registry: false        #检索服务
+    registry-fetch-interval-seconds: 5 #从Eureka服务器端获取注册信息的间隔时间，单位：秒
   instance:
-    lease-expiration-duration-in-seconds: 15
-    lease-renewal-interval-in-seconds: 5
-    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 15 #定义服务失效的时间，单位：秒
+    lease-renewal-interval-in-seconds: 5  #定义服务续约任务（心跳）的调用间隔，单位：秒
+    prefer-ip-address: true #定义服务失效的时间，单位：秒
     instance-id: ${spring.application.name}:${server.port}
   server:
-    enable-self-preservation: false
-    eviction-interval-timer-in-ms: 3000
+    enable-self-preservation: false #关闭注册中心的保护机制，Eureka 会统计15分钟之内心跳失败的比例低于85%将会触发保护机制，不剔除服务提供者，如果关闭注册中心保护机制将不可用的实例正确剔除
+    eviction-interval-timer-in-ms: 3000 # 清理间隔（单位毫秒，默认是60*1000）3秒内剔除无用的服务
 management:
   endpoints:
     web:

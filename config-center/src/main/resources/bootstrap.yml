@@ -9,11 +9,11 @@ spring:
         native:
           searchLocations: classpath:/configs/{profile}
 #          searchLocations: file:/d:/configs/{profile}
-#        git:
-#          uri: https://gitee.com/zhang.w/cloud-service-configs.git
-#          default-label: master
-#          force-pull: true
-#          searchPaths: '{profile}'
+        git:
+          uri: https://gitee.com/zhang.w/cloud-service-configs.git
+          default-label: master
+          force-pull: true
+          searchPaths: '{profile}'
 server:
   port: 0
 eureka:
